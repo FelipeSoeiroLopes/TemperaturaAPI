@@ -2,6 +2,8 @@
 
 Um aplicativo web elegante e responsivo para consulta de previsão do tempo, desenvolvido com HTML, CSS e JavaScript puro.
 
+🔗 **[Acesse a aplicação web aqui](https://felipesoeirolopes.github.io/TemperaturaAPI/)**
+
 ## 📋 Características
 
 - **Design Moderno**: Interface com efeito glassmorphism e animações suaves
