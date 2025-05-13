@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --glass-bg: linear-gradient(to top, rgba(0,0,0,0.15), rgba(255,255,255,0.15));
+    --glass-effect: blur(15px);
+    --transition-speed: 0.3s;
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", sans-serif;
+    color: white;
+    font-weight: 600;
+}
+
+body {
+    background: url('assets/bg.jpg');
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: var(--glass-effect);
+}
+
+/* ULTILIDADES */
+.regular-txt {
+    font-weight: 400;
+}
+
+/* FIM DO ULTILIDADES */
+.main-container {
+    width: 300px;
+    height: auto;
+    z-index: 1;
+    background: var(--glass-bg);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(100px);
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform var(--transition-speed);
+}
+
+.main-container:hover {
+    transform: translateY(-5px);
+}
+
+/* IMPUT DO CONTAINER */
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.city-input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 99px;
+    border: 3px solid transparent;
+    background: rgb(0,0,0,0.15);
+    outline: none;
+    font-weight: 500;
+    transition: 0.25s border;
+    padding-right: 45px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed);
+}
+.city-input:focus {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.city-input::placeholder {
+    color: rgb(255,255,255,0.75);
+}
+
+.search-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    display: flex;
+    border: none;
+    cursor: pointer;
+
+}
+
+/* FIM DO IMPUT DO CONTAINER */
+
+/* SECTION WEATHER INFO */
+.weather-info{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.location-date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.weather-summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather-summary-img {
+    width: 120px;
+    height: 120px;
+    transition: transform 0.5s ease;
+}
+
+.weather-summary-img:hover {
+    transform: scale(1.1);
+}
+
+.weather-summary-info {
+    text-align: end;
+}
+
+.weather-conditions-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform var(--transition-speed);
+}
+
+.condition-item:hover {
+    transform: translateY(-3px);
+}
+
+.condition-item span {
+    font-size: 30px;
+}
+
+/* Atualização do container de previsão */
+.forecast-items-container {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 10px 5px;
+    margin: 0 -5px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    -webkit-overflow-scrolling: touch; /* Melhor rolagem no iOS */
+}
+
+.forecast-items-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.forecast-items-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    transition: background var(--transition-speed);
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Atualização do item de previsão */
+.forecast-item {
+    min-width: 80px;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 10px;
+    align-items: center;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all var(--transition-speed);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.forecast-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-item-date {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.forecast-item-img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.forecast-item:hover .forecast-item-img {
+    transform: scale(1.1);
+}
+
+.forecast-item-temp {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Adicionando animação suave para os itens */
+.forecast-item {
+    animation: slideIn 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustando responsividade */
+@media (max-width: 360px) {
+    .forecast-items-container {
+        gap: 8px;
+    }
+    
+    .forecast-item {
+        min-width: 70px;
+        padding: 8px;
+    }
+
+    .forecast-item-img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .forecast-item-date {
+        font-size: 0.75rem;
+    }
+
+    .forecast-item-temp {
+        font-size: 1rem;
+    }
+}
+/* END SECTION WEATHER INFO */
+.section-message {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    align-items: center;
+    margin-top: 25%;
+}
+
+.section-message img {
+    width: fit-content;
+    height: 180px;
+}
+
+/* Adicionando animação de loading */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* END SECTION MESSAGE */
+
